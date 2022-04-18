@@ -129,9 +129,6 @@ $desktop: 1440px;
       margin-bottom: 55px;
     }
     &__breaks {
-      display: flex;
-      align-items: center;
-      position: relative;
       padding-left: 7px;
       padding-right: 7px;
       margin-bottom: 109px;
@@ -170,45 +167,14 @@ $desktop: 1440px;
 @media screen and (min-width: $desktop) {
   .pomodoro {
     padding-top: 48px;
-    &__title {
-      font-size: 32px;
-      line-height: 40px;
-      margin-bottom: 55px;
-    }
     &__breaks {
-      display: flex;
-      align-items: center;
-      position: relative;
-      padding-left: 7px;
-      padding-right: 7px;
-      margin-bottom: 109px;
-    }
-    &__break-btn {
-      min-width: 120px;
-      font-size: 14px;
-      line-height: 17px;
-      opacity: 0.4;
+      margin-bottom: 52px;
     }
     &__clock-wrapper {
-      width: 410px;
-      height: 410px;
-      margin-bottom: 144px;
-    }
-    &__clock {
-      width: 366px;
-      height: 366px;
-    }
-    &__time {
-      font-size: 100px;
-      line-height: 124px;
-      letter-spacing: -5px;
-      margin-top: 105px;
-      margin-bottom: 20px;
+      margin-bottom: 63px;
     }
     &__restart-btn {
-      font-size: 16px;
-      line-height: 20px;
-      letter-spacing: 15px;
+      line-height: 21px;
     }
   }
 }
