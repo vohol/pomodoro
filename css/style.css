@@ -126,14 +126,14 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
   transition: all 0.3s;
 }
-.pomodoro__break-btn:hover {
-  opacity: 1;
-}
 .pomodoro__break-btn--active {
   background: #F87070;
-  opacity: 1;
+  opacity: 1 !important;
   color: #1E213F;
   cursor: auto;
+}
+.pomodoro__break-btn:hover {
+  opacity: 1;
 }
 .pomodoro__clock-wrapper {
   display: flex;
@@ -184,4 +184,95 @@ h1, h2, h3, h4, h5, h6 {
 }
 .pomodoro__settings:hover .menu-icon {
   opacity: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .pomodoro {
+    padding: 80px 0 0;
+  }
+  .pomodoro__title {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 55px;
+  }
+  .pomodoro__breaks {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-bottom: 109px;
+  }
+  .pomodoro__break-btn {
+    min-width: 120px;
+    font-size: 14px;
+    line-height: 17px;
+    opacity: 0.4;
+  }
+  .pomodoro__clock-wrapper {
+    width: 410px;
+    height: 410px;
+    margin-bottom: 144px;
+  }
+  .pomodoro__clock {
+    width: 366px;
+    height: 366px;
+  }
+  .pomodoro__time {
+    font-size: 100px;
+    line-height: 124px;
+    letter-spacing: -5px;
+    margin-top: 105px;
+    margin-bottom: 20px;
+  }
+  .pomodoro__restart-btn {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 15px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .pomodoro {
+    padding-top: 48px;
+  }
+  .pomodoro__title {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 55px;
+  }
+  .pomodoro__breaks {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-bottom: 109px;
+  }
+  .pomodoro__break-btn {
+    min-width: 120px;
+    font-size: 14px;
+    line-height: 17px;
+    opacity: 0.4;
+  }
+  .pomodoro__clock-wrapper {
+    width: 410px;
+    height: 410px;
+    margin-bottom: 144px;
+  }
+  .pomodoro__clock {
+    width: 366px;
+    height: 366px;
+  }
+  .pomodoro__time {
+    font-size: 100px;
+    line-height: 124px;
+    letter-spacing: -5px;
+    margin-top: 105px;
+    margin-bottom: 20px;
+  }
+  .pomodoro__restart-btn {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 15px;
+  }
 }
