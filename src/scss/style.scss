@@ -1,0 +1,124 @@
+@import "nullstyle.scss";
+// font-family: 'Kumbh Sans', sans-serif;
+// font-family: 'Roboto Slab', serif;
+// font-family: 'Space Mono', monospace;
+.menu-icon { 
+  width: 28px; 
+  height: 28px; 
+}
+$main-font: 'Kumbh Sans', sans-serif;
+$main-color: #F87070;
+$tablet: 768px;
+
+* {
+  box-sizing: border-box;
+  font-weight: 700;
+}
+
+.pomodoro {
+  padding: 32px 24px;
+  height: 100vh;
+  background-color: #1E213F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__title {
+    font-family: $main-font;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: #D7E0FF;
+    margin-bottom: 45px;
+  }
+  &__breaks {
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-height: 63px;
+    padding-left: 6.13px;
+    padding-right: 6.13px;
+    background: #161932;
+    border-radius: 31.5px;
+    margin-bottom: 48px;
+  }
+  &__break-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 106px;
+    min-height: 48px;
+    border-radius: 26.5px;
+    font-family: $main-font;
+    font-size: 12px;
+    line-height: 15px;
+    color: #D7E0FF;
+    opacity: 0.4;
+    background: transparent;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 1;
+    }
+    &--active {
+      background: $main-color;
+      opacity: 1;
+      color: #1E213F;
+      cursor: auto;
+    }
+  }
+  &__clock-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(315deg, #2E325A 0%, #0E112A 100%);
+    box-shadow: -50px -50px 100px #272C5A, 50px 50px 100px #121530;
+    margin-bottom: 63px;
+  }
+  &__clock {
+    width: 267.8px;
+    height: 267.8px;
+    border-radius: 50%;
+    background: #161932;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__time {
+    font-family: $main-font;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 99px;
+    letter-spacing: -4px;
+    color: #D7E0FF;
+    margin-top: 75.9px;
+    margin-bottom: 5.09px;
+  }
+  &__restart-btn {
+    font-family: $main-font;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 13.125px;
+    color: #D7E0FF;
+  }
+  &__settings {
+    background: transparent;
+    .menu-icon {
+      fill: #D7E0FF;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    &:hover {
+      .menu-icon {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  
+}

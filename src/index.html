@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	@@include('html/head.html',{
+	"title":"pomodoro"
+	})
+	<body>
+		@@include('html/header.html',{})
+		<main>
+			<section class="pomodoro">
+				<h1 class="pomodoro__title">pomodoro</h1>
+				<div class="pomodoro__breaks">
+					<button class="pomodoro__break-btn pomodoro__break-btn--active">
+						pomodoro
+					</button>
+					<button class="pomodoro__break-btn">short break</button>
+					<button class="pomodoro__break-btn">long break</button>
+				</div>
+				<div class="pomodoro__clock-wrapper">
+					<div class="pomodoro__clock">
+						<div class="pomodoro__progress-circle"></div>
+						<span class="pomodoro__time">
+							<span class="pomodoro__mins">00</span>:<span class="pomodoro__secs">00</span>
+						</span>
+						<div class="pomodoro__restart-btn">restart</div>
+					</div>
+				</div>
+				<button class="pomodoro__settings">
+					<svg class="menu-icon">
+						<use xlink:href="@img/icons/icons-mono.svg#menu"></use>
+					</svg>
+				</button>
+			</section>
+		</main>
+		@@include('html/footer.html',{})
+		<script src="js/app.min.js"></script>
+	</body>
+</html>

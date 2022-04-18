@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	 <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="css/style.min.css">
+	<title>pomodoro</title>
+</head>
+
+	<body>
+		<header>
+</header>
+		<main>
+			<section class="pomodoro">
+				<h1 class="pomodoro__title">pomodoro</h1>
+				<div class="pomodoro__breaks">
+					<button class="pomodoro__break-btn pomodoro__break-btn--active">
+						pomodoro
+					</button>
+					<button class="pomodoro__break-btn">short break</button>
+					<button class="pomodoro__break-btn">long break</button>
+				</div>
+				<div class="pomodoro__clock-wrapper">
+					<div class="pomodoro__clock">
+						<div class="pomodoro__progress-circle"></div>
+						<span class="pomodoro__time">
+							<span class="pomodoro__mins">00</span>:<span class="pomodoro__secs">00</span>
+						</span>
+						<div class="pomodoro__restart-btn">restart</div>
+					</div>
+				</div>
+				<button class="pomodoro__settings">
+					<svg class="menu-icon">
+						<use xlink:href="img/icons/icons-mono.svg#menu"></use>
+					</svg>
+				</button>
+			</section>
+		</main>
+		<footer></footer>
+		<script src="js/app.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,187 @@
+@charset "UTF-8";
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*--------------------*/
+.menu-icon {
+  width: 28px;
+  height: 28px;
+}
+
+* {
+  box-sizing: border-box;
+  font-weight: 700;
+}
+
+.pomodoro {
+  padding: 32px 24px;
+  height: 100vh;
+  background-color: #1E213F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pomodoro__title {
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  color: #D7E0FF;
+  margin-bottom: 45px;
+}
+.pomodoro__breaks {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 63px;
+  padding-left: 6.13px;
+  padding-right: 6.13px;
+  background: #161932;
+  border-radius: 31.5px;
+  margin-bottom: 48px;
+}
+.pomodoro__break-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 106px;
+  min-height: 48px;
+  border-radius: 26.5px;
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  color: #D7E0FF;
+  opacity: 0.4;
+  background: transparent;
+  transition: all 0.3s;
+}
+.pomodoro__break-btn:hover {
+  opacity: 1;
+}
+.pomodoro__break-btn--active {
+  background: #F87070;
+  opacity: 1;
+  color: #1E213F;
+  cursor: auto;
+}
+.pomodoro__clock-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(315deg, #2E325A 0%, #0E112A 100%);
+  box-shadow: -50px -50px 100px #272C5A, 50px 50px 100px #121530;
+  margin-bottom: 63px;
+}
+.pomodoro__clock {
+  width: 267.8px;
+  height: 267.8px;
+  border-radius: 50%;
+  background: #161932;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pomodoro__time {
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 99px;
+  letter-spacing: -4px;
+  color: #D7E0FF;
+  margin-top: 75.9px;
+  margin-bottom: 5.09px;
+}
+.pomodoro__restart-btn {
+  font-family: "Kumbh Sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 13.125px;
+  color: #D7E0FF;
+}
+.pomodoro__settings {
+  background: transparent;
+}
+.pomodoro__settings .menu-icon {
+  fill: #D7E0FF;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.pomodoro__settings:hover .menu-icon {
+  opacity: 1;
+}
