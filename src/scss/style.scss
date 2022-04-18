@@ -9,6 +9,7 @@
 $main-font: 'Kumbh Sans', sans-serif;
 $main-color: #F87070;
 $tablet: 768px;
+$desktop: 1440px;
 
 * {
   box-sizing: border-box;
@@ -55,14 +56,14 @@ $tablet: 768px;
     opacity: 0.4;
     background: transparent;
     transition: all 0.3s;
-    &:hover {
-      opacity: 1;
-    }
     &--active {
       background: $main-color;
-      opacity: 1;
+      opacity: 1 !important; 
       color: #1E213F;
       cursor: auto;
+    }
+    &:hover {
+      opacity: 1;
     }
   }
   &__clock-wrapper {
@@ -120,5 +121,94 @@ $tablet: 768px;
 }
 
 @media screen and (min-width: $tablet) {
-  
+  .pomodoro {
+    padding: 80px 0 0;
+    &__title {
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 55px;
+    }
+    &__breaks {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 7px;
+      padding-right: 7px;
+      margin-bottom: 109px;
+    }
+    &__break-btn {
+      min-width: 120px;
+      font-size: 14px;
+      line-height: 17px;
+      opacity: 0.4;
+    }
+    &__clock-wrapper {
+      width: 410px;
+      height: 410px;
+      margin-bottom: 144px;
+    }
+    &__clock {
+      width: 366px;
+      height: 366px;
+    }
+    &__time {
+      font-size: 100px;
+      line-height: 124px;
+      letter-spacing: -5px;
+      margin-top: 105px;
+      margin-bottom: 20px;
+    }
+    &__restart-btn {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 15px;
+    }
+  }
+}
+
+
+@media screen and (min-width: $desktop) {
+  .pomodoro {
+    padding-top: 48px;
+    &__title {
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 55px;
+    }
+    &__breaks {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 7px;
+      padding-right: 7px;
+      margin-bottom: 109px;
+    }
+    &__break-btn {
+      min-width: 120px;
+      font-size: 14px;
+      line-height: 17px;
+      opacity: 0.4;
+    }
+    &__clock-wrapper {
+      width: 410px;
+      height: 410px;
+      margin-bottom: 144px;
+    }
+    &__clock {
+      width: 366px;
+      height: 366px;
+    }
+    &__time {
+      font-size: 100px;
+      line-height: 124px;
+      letter-spacing: -5px;
+      margin-top: 105px;
+      margin-bottom: 20px;
+    }
+    &__restart-btn {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 15px;
+    }
+  }
 }
