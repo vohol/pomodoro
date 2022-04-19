@@ -195,7 +195,7 @@ $desktop: 1440px;
   margin: 0 auto;
   position: fixed;
   width: 327px;
-  top: 48px;
+  top: 46px;
   left: 0;
   right: 0;
   background: #ffffff;
@@ -242,7 +242,7 @@ $desktop: 1440px;
     }
   }
   &__time-option {
-    font-family: $tablet;
+    font-family: $main-font;
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
@@ -442,6 +442,140 @@ $desktop: 1440px;
     background: transparent;
     &:hover .arrow-short-icon {
       opacity: 0.8;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  .settings {
+    width: 540px;
+    top: 28%;
+    border-radius: 25px;
+    &__header-wrapper {
+      min-height: 94px;
+      padding: 0 40px 0 38px;
+    }
+    &__title {
+      font-size: 28px;
+      line-height: 35px;
+    } 
+    &__content-title {
+      font-size: 13px;
+      line-height: 16px;
+      letter-spacing: 5px;
+      margin-bottom: 0;
+      text-align: left;
+    }
+    &__times {
+      padding: 24px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    &__times-title {
+      margin-bottom: 26px;
+    }
+    &__time-rows {
+      display: flex;
+    }
+    &__time-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      &:not(:last-child) {
+        margin-bottom: 0;
+        margin-right: 20px;
+      }
+    }
+    &__time-option {
+      margin-bottom: 10px;
+    }
+    &__fonts,
+    &__colors {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 40px;
+      &:after {
+        top: 0;
+        left: 40px;
+        width: 460px;
+      }
+    }
+    &__colors {
+      padding: 23px 40px 59px;
+    }
+    &__fonts-wrapper {
+      margin-bottom: 0;
+    }
+    &__colors-wrapper {
+      padding-bottom: 0;
+    }
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .settings {
+    width: 540px;
+    top: 28%;
+    border-radius: 25px;
+    &__header-wrapper {
+      min-height: 94px;
+      padding: 0 40px 0 38px;
+    }
+    &__title {
+      font-size: 28px;
+      line-height: 35px;
+    } 
+    &__content-title {
+      font-size: 13px;
+      line-height: 16px;
+      letter-spacing: 5px;
+      margin-bottom: 0;
+      text-align: left;
+    }
+    &__times {
+      padding: 24px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    &__times-title {
+      margin-bottom: 26px;
+    }
+    &__time-rows {
+      display: flex;
+    }
+    &__time-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      &:not(:last-child) {
+        margin-bottom: 0;
+        margin-right: 20px;
+      }
+    }
+    &__time-option {
+      margin-bottom: 10px;
+    }
+    &__fonts,
+    &__colors {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 40px;
+      &:after {
+        top: 0;
+        left: 40px;
+        width: 460px;
+      }
+    }
+    &__colors {
+      padding: 23px 40px 59px;
+    }
+    &__fonts-wrapper {
+      margin-bottom: 0;
+    }
+    &__colors-wrapper {
+      padding-bottom: 0;
     }
   }
 }
