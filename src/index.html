@@ -30,6 +30,108 @@
 					</svg>
 				</button>
 			</section>
+			<section class="settings">
+				<div class="settings__header-wrapper">
+					<h2 class="settings__title">Settings</h2>
+					<div class="settings__close close">
+						<span class="close__first-line"></span>
+						<span class="close__second-line"></span>
+					</div>
+				</div>
+				<div class="settings__content">
+					<div class="settings__times">
+						<h3 class="settings__content-title">TIME (MINUTES)</h3>
+						<div class="settings__time-row">
+							<div class="settings__time-option">
+								pomodoro
+							</div>
+	
+							<div class="settings__time-selector incr-decr-selector">
+								<div class="incr-decr-selector__content">
+									25
+								</div>
+								<div class="incr-decr-selector__buttons">
+									<button class="incr-decr-selector__button-top">
+										<svg class="arrow-short-icon arrow-short-icon--top">
+											<use xlink:href="@img/icons/icons-mono.svg#arrow-short"></use>
+										</svg>
+									</button>
+									<button class="incr-decr-selector__button-bottom">
+										<svg class="arrow-short-icon">
+											<use xlink:href="@img/icons/icons-mono.svg#arrow-short"></use>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+	
+						<div class="settings__time-row">
+							<div class="settings__time-option">
+								short break
+							</div>
+	
+							<div class="settings__time-selector incr-decr-selector">
+								<div class="incr-decr-selector__content">
+									5
+								</div>
+								<div class="incr-decr-selector__buttons">
+									<button class="incr-decr-selector__button-top">
+										<svg class="arrow-short-icon arrow-short-icon--top">
+											<use xlink:href="@img/icons/icons-mono.svg#arrow-short"></use>
+										</svg>
+									</button>
+									<button class="incr-decr-selector__button-bottom">
+										<svg class="arrow-short-icon">
+											<use xlink:href="@img/icons/icons-mono.svg#arrow-short"></use>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+	
+						<div class="settings__time-row">
+							<div class="settings__time-option">
+								long break
+							</div>
+	
+							<div class="settings__time-selector incr-decr-selector">
+								<div class="incr-decr-selector__content">
+									15
+								</div>
+								<div class="incr-decr-selector__buttons">
+									<button class="incr-decr-selector__button-top">
+										<svg class="arrow-short-icon arrow-short-icon--top">
+											<use xlink:href="@img/icons/icons-mono.svg#arrow-short"></use>
+										</svg>
+									</button>
+									<button class="incr-decr-selector__button-bottom">
+										<svg class="arrow-short-icon">
+											<use xlink:href="@img/icons/icons-mono.svg#arrow-short"></use>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="settings__fonts">
+						<h3 class="settings__content-title">FONT</h3>
+						<div class="settings__fonts-wrapper">
+							<div class="settings__font-item settings__font-item--kumbh settings__font-item--active">Aa</div>
+							<div class="settings__font-item settings__font-item--roboto">Aa</div>
+							<div class="settings__font-item settings__font-item--space">Aa</div>
+						</div>
+					</div>
+					<div class="settings__colors">
+						<h3 class="settings__content-title">COLOR</h3>
+						<div class="settings__colors-wrapper">
+							<div class="settings__color-item settings__color-item--red settings__color-item--active"></div>
+							<div class="settings__color-item settings__color-item--blue"></div>
+							<div class="settings__color-item settings__color-item--purple"></div>
+						</div>
+					</div>
+				</div>
+				<button class="settings__apply">Apply</button>
+			</section>
 		</main>
 		@@include('html/footer.html',{})
 		<script src="js/app.min.js"></script>
