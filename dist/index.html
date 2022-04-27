@@ -7,6 +7,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.min.js" integrity="sha512-7IoDEsIJGxz/gNyJY/0LRtS45wDSvPFXGPuC7Fo4YueWMNOmWKMAllEqo2Im3pgOjeEwsOoieyliRgdkZnY0ow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link rel="stylesheet" href="css/style.min.css">
 	<title>pomodoro</title>
 </head>
@@ -18,19 +19,32 @@
 			<section class="pomodoro">
 				<h1 class="pomodoro__title">pomodoro</h1>
 				<div class="pomodoro__breaks">
-					<button class="pomodoro__break-btn pomodoro__break-btn--active">
+					<button data-action="pomodoro" class="pomodoro__break-btn pomodoro__break-btn--active">
 						pomodoro
 					</button>
-					<button class="pomodoro__break-btn">short break</button>
-					<button class="pomodoro__break-btn">long break</button>
+					<button data-action="short-brk" class="pomodoro__break-btn">short break</button>
+					<button data-action="long-brk" class="pomodoro__break-btn">long break</button>
 				</div>
 				<div class="pomodoro__clock-wrapper">
 					<div class="pomodoro__clock">
-						<div class="pomodoro__progress-circle"></div>
-						<span class="pomodoro__time">
-							<span class="pomodoro__mins">00</span>:<span class="pomodoro__secs">00</span>
+						<div id="progree-bar" class="pomodoro__progress-circle">
+							<!-- <svg class="progress-clock">
+								<circle class="clock-shape" cx="128" cy="128" r="118"></circle>
+							</svg> -->
+							<!-- <svg class="progress-clock" viewBox="0 0 100 100">
+								<path d="M 50,50 m 0,-47 a 47,47 0 1 1 0,94 a 47,47 0 1 1 0,-94" fill-opacity="0" style="stroke-dasharray: 295.351px, 295.351px; stroke-dashoffset: 206.746px;"></path>
+								<svg/> -->
+							</div>
+						<span data-action="pomodoro" class="pomodoro__time pomodoro-timer pomodoro__time--active">
+							<span class="pomodoro__mins pomodoro-timer__mins">00</span>:<span class="pomodoro__secs pomodoro-timer__secs">00</span>
 						</span>
-						<div class="pomodoro__restart-btn">restart</div>
+						<span data-action="short-brk" class="pomodoro__time short-break-timer">
+							<span class="pomodoro__mins short-break-timer__mins">00</span>:<span class="short-break short-break-timer__secs">00</span>
+						</span>
+						<span data-action="long-brk" class="pomodoro__time long-break-timer">
+							<span class="pomodoro__mins long-break-timer__mins">00</span>:<span class="pomodoro__secs long-break-timer__secs">00</span>
+						</span>
+						<button data-action="start" class="pomodoro__go-btn">start</button>
 					</div>
 				</div>
 				<button class="pomodoro__settings">
@@ -57,10 +71,8 @@
 									pomodoro
 								</div>
 		
-								<div class="settings__time-selector incr-decr-selector">
-									<div class="incr-decr-selector__content">
-										25
-									</div>
+								<div class="incr-decr-selector-wrapper">
+									<input class="settings__time-selector incr-decr-selector"type="number" name="pomodoro-setup" id="pomodoro-setup" value="25" data-active-value="25">
 									<div class="incr-decr-selector__buttons">
 										<button class="incr-decr-selector__button-top">
 											<svg class="arrow-short-icon arrow-short-icon--top">
@@ -81,10 +93,8 @@
 									short break
 								</div>
 		
-								<div class="settings__time-selector incr-decr-selector">
-									<div class="incr-decr-selector__content">
-										5
-									</div>
+								<div class="incr-decr-selector-wrapper">
+									<input class="settings__time-selector incr-decr-selector"type="number" name="short-break-setup" id="short-break-setup" value="5" data-active-value="5">
 									<div class="incr-decr-selector__buttons">
 										<button class="incr-decr-selector__button-top">
 											<svg class="arrow-short-icon arrow-short-icon--top">
@@ -105,10 +115,8 @@
 									long break
 								</div>
 		
-								<div class="settings__time-selector incr-decr-selector">
-									<div class="incr-decr-selector__content">
-										15
-									</div>
+								<div class="incr-decr-selector-wrapper">
+									<input class="settings__time-selector incr-decr-selector"type="number" name="long-break-setup" id="long-break-setup" value="15" data-active-value="15">
 									<div class="incr-decr-selector__buttons">
 										<button class="incr-decr-selector__button-top">
 											<svg class="arrow-short-icon arrow-short-icon--top">
@@ -129,17 +137,17 @@
 					<div class="settings__fonts">
 						<h3 class="settings__content-title">FONT</h3>
 						<div class="settings__fonts-wrapper">
-							<div class="settings__font-item settings__font-item--kumbh settings__font-item--active">Aa</div>
-							<div class="settings__font-item settings__font-item--roboto">Aa</div>
-							<div class="settings__font-item settings__font-item--space">Aa</div>
+							<div data-active='true' class="settings__font-item settings__font-item--kumbh settings__font-item--active">Aa</div>
+							<div data-active='false' class="settings__font-item settings__font-item--roboto">Aa</div>
+							<div data-active='false' class="settings__font-item settings__font-item--space">Aa</div>
 						</div>
 					</div>
 					<div class="settings__colors">
 						<h3 class="settings__content-title">COLOR</h3>
 						<div class="settings__colors-wrapper">
-							<div class="settings__color-item settings__color-item--red settings__color-item--active"></div>
-							<div class="settings__color-item settings__color-item--blue"></div>
-							<div class="settings__color-item settings__color-item--purple"></div>
+							<div data-active='true' class="settings__color-item settings__color-item--red settings__color-item--active"></div>
+							<div data-active='false' class="settings__color-item settings__color-item--blue"></div>
+							<div data-active='false' class="settings__color-item settings__color-item--purple"></div>
 						</div>
 					</div>
 				</div>
@@ -147,6 +155,7 @@
 			</section>
 		</main>
 		<footer></footer>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.min.js" integrity="sha512-7IoDEsIJGxz/gNyJY/0LRtS45wDSvPFXGPuC7Fo4YueWMNOmWKMAllEqo2Im3pgOjeEwsOoieyliRgdkZnY0ow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="js/app.min.js"></script>
 	</body>
 </html>
