@@ -74,6 +74,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------*/
+:root {
+  --main-font: "Kumbh Sans", sans-serif;
+  --main-color: #F87070;
+}
+
 .menu-icon {
   width: 28px;
   height: 28px;
@@ -86,6 +91,7 @@ h1, h2, h3, h4, h5, h6 {
   stroke: #1b1f3b;
   opacity: 0.25;
   transition: all 0.3s;
+  pointer-events: none;
 }
 .arrow-short-icon--top {
   transform: rotate(180deg);
@@ -93,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 
 * {
   box-sizing: border-box;
+  font-family: var(--main-font);
   font-weight: 700;
 }
 
@@ -105,7 +112,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 .pomodoro__title {
-  font-family: "Kumbh Sans", sans-serif;
   font-size: 24px;
   line-height: 30px;
   text-align: center;
@@ -130,7 +136,6 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 106px;
   min-height: 48px;
   border-radius: 26.5px;
-  font-family: "Kumbh Sans", sans-serif;
   font-size: 12px;
   line-height: 15px;
   color: #D7E0FF;
@@ -139,7 +144,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s;
 }
 .pomodoro__break-btn--active {
-  background: #F87070;
+  background: var(--main-color);
   opacity: 1 !important;
   color: #1E213F;
   cursor: auto;
@@ -159,6 +164,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 63px;
 }
 .pomodoro__clock {
+  position: relative;
   width: 267.8px;
   height: 267.8px;
   border-radius: 50%;
@@ -168,7 +174,6 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 .pomodoro__time {
-  font-family: "Kumbh Sans", sans-serif;
   font-weight: 700;
   font-size: 80px;
   line-height: 99px;
@@ -177,14 +182,20 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 75.9px;
   margin-bottom: 5.09px;
 }
-.pomodoro__restart-btn {
-  font-family: "Kumbh Sans", sans-serif;
+.pomodoro__go-btn {
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 13.125px;
   color: #D7E0FF;
+  background: transparent;
+}
+.pomodoro__go-btn:hover {
+  color: var(--main-color);
 }
 .pomodoro__settings {
   background: transparent;
@@ -228,13 +239,17 @@ h1, h2, h3, h4, h5, h6 {
     height: 366px;
   }
   .pomodoro__time {
+    display: none;
     font-size: 100px;
     line-height: 124px;
     letter-spacing: -5px;
     margin-top: 105px;
     margin-bottom: 20px;
   }
-  .pomodoro__restart-btn {
+  .pomodoro__time--active {
+    display: block;
+  }
+  .pomodoro__go-btn {
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 15px;
@@ -250,7 +265,7 @@ h1, h2, h3, h4, h5, h6 {
   .pomodoro__clock-wrapper {
     margin-bottom: 63px;
   }
-  .pomodoro__restart-btn {
+  .pomodoro__go-btn {
     line-height: 21px;
   }
 }
@@ -263,6 +278,13 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   background: #ffffff;
   border-radius: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+.settings--active {
+  opacity: 1;
+  visibility: visible;
 }
 .settings__header-wrapper {
   min-height: 73px;
@@ -274,13 +296,11 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 .settings__title {
-  font-family: "Kumbh Sans", sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 25px;
 }
 .settings__content-title {
-  font-family: "Kumbh Sans", sans-serif;
   font-weight: 700;
   font-size: 11px;
   line-height: 14px;
@@ -303,7 +323,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 8px;
 }
 .settings__time-option {
-  font-family: "Kumbh Sans", sans-serif;
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
@@ -429,7 +448,6 @@ h1, h2, h3, h4, h5, h6 {
   transform: translate(-50%, 50%);
   background: #F87070;
   border-radius: 26.5px;
-  font-family: "Kumbh Sans", sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
@@ -467,6 +485,10 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.8;
 }
 
+.incr-decr-selector-wrapper {
+  position: relative;
+}
+
 .incr-decr-selector {
   width: 140px;
   min-height: 40px;
@@ -476,14 +498,21 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.incr-decr-selector__content {
-  font-family: "Kumbh Sans", sans-serif;
   font-weight: 700;
   font-size: 14px;
   color: #1E213F;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+}
+.incr-decr-selector::-webkit-inner-spin-button, .incr-decr-selector::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .incr-decr-selector__buttons {
+  position: absolute;
+  top: 8px;
+  right: 16px;
   display: flex;
   flex-direction: column;
   gap: 9px;
@@ -564,68 +593,27 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 0;
   }
 }
-@media screen and (min-width: 1440px) {
-  .settings {
-    width: 540px;
-    top: 28%;
-    border-radius: 25px;
-  }
-  .settings__header-wrapper {
-    min-height: 94px;
-    padding: 0 40px 0 38px;
-  }
-  .settings__title {
-    font-size: 28px;
-    line-height: 35px;
-  }
-  .settings__content-title {
-    font-size: 13px;
-    line-height: 16px;
-    letter-spacing: 5px;
-    margin-bottom: 0;
-    text-align: left;
-  }
-  .settings__times {
-    padding: 24px 40px;
-    display: flex;
-    flex-direction: column;
-  }
-  .settings__times-title {
-    margin-bottom: 26px;
-  }
-  .settings__time-rows {
-    display: flex;
-  }
-  .settings__time-row {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .settings__time-row:not(:last-child) {
-    margin-bottom: 0;
-    margin-right: 20px;
-  }
-  .settings__time-option {
-    margin-bottom: 10px;
-  }
-  .settings__fonts, .settings__colors {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 40px;
-  }
-  .settings__fonts:after, .settings__colors:after {
-    top: 0;
-    left: 40px;
-    width: 460px;
-  }
-  .settings__colors {
-    padding: 23px 40px 59px;
-  }
-  .settings__fonts-wrapper {
-    margin-bottom: 0;
-  }
-  .settings__colors-wrapper {
-    padding-bottom: 0;
+.pomodoro__progress-circle {
+  width: 248.05px;
+  height: 248.05px;
+  position: absolute;
+  top: 9.88px;
+  left: 9.88px;
+  stroke: var(--main-color);
+}
+.pomodoro__progress-circle path {
+  stroke: transparent;
+}
+.pomodoro__progress-circle path + path {
+  stroke-linecap: round;
+  stroke: var(--main-color);
+}
+
+@media screen and (min-width: 768px) {
+  .pomodoro__progress-circle {
+    width: 339px;
+    height: 339px;
+    top: 13.5px;
+    left: 13.5px;
   }
 }
