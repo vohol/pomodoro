@@ -75,8 +75,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /*--------------------*/
 :root {
-  --main-font: "Kumbh Sans", sans-serif;
-  --main-color: #F87070;
+  --main-font: ;
+  --main-color: ;
 }
 
 .menu-icon {
@@ -272,6 +272,7 @@ h1, h2, h3, h4, h5, h6 {
 .settings {
   margin: 0 auto;
   position: fixed;
+  z-index: 99;
   width: 327px;
   top: 46px;
   left: 0;
@@ -282,7 +283,24 @@ h1, h2, h3, h4, h5, h6 {
   visibility: hidden;
   transition: all 0.3s;
 }
+.settings + .overlay {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(10, 12, 28, 0.5);
+  z-index: 98;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
 .settings--active {
+  opacity: 1;
+  visibility: visible;
+}
+.settings--active + .overlay {
   opacity: 1;
   visibility: visible;
 }
