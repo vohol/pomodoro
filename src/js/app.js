@@ -83,31 +83,82 @@ function () {
 
 
 let increment = 0;
+let timeSecs;
+let initialTimeSecs;
+var step;
+
 const startButton = document.querySelector('.pomodoro__go-btn')
 startButton.addEventListener('click',
 function () {
   const activeTimer = document.querySelector(`.pomodoro__time--active`)
   const timerMins = activeTimer.children[0]
   const timerSecs = activeTimer.children[1]
-
+  
   switch (startButton.dataset.action) {
     case ('start'):
-      
-    case ('restart'):
       startButton.dataset.action  = 'pause'
       startButton.textContent = 'pause'
-      circle.value(0)
-
-    
-      let timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
-      let initialTimeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
+      circle.set(0)
+      
       
       if (timeSecs == 0) {
         mainFunctions.setupTimers();
         timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
       }
       
-      let step = 1/initialTimeSecs;
+      increment = 0;
+      timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
+      initialTimeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
+      
+      
+      step = 1/initialTimeSecs;
+      console.log(initialTimeSecs);
+      
+      timerId = setInterval(function() {
+
+      increment += step
+      console.log(increment);
+      if (increment < 1) {
+        circle.animate(increment, {
+          duration: 1000,
+        });
+      } else {
+        circle.set(1)
+      }
+        // circle.set(increment += increment)
+      // console.log(increment += increment)
+
+        timeSecs--
+        let displayMins = Math.floor(timeSecs / 60);
+        let displaySecs = timeSecs % 60
+        
+        timerMins.textContent = displayMins < 10 ?
+        '0' + displayMins : displayMins;
+        timerSecs.textContent = displaySecs < 10 ?
+        '0' + displaySecs : displaySecs;
+        
+        if (timeSecs == 0) {
+          clearInterval(timerId);
+          startButton.dataset.action  = 'start'
+          startButton.textContent = 'start'
+          mainFunctions.soundClick()
+
+        }
+        
+      }, 1000)
+      
+      break;
+      
+      case ('restart'):
+      startButton.dataset.action  = 'pause'
+      startButton.textContent = 'pause'
+    
+      timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
+      
+      if (timeSecs == 0) {
+        mainFunctions.setupTimers();
+        timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
+      }
 
       timerId = setInterval(function() {
 
@@ -116,8 +167,6 @@ function () {
         duration: 1000,
       });
       console.log(increment);
-      // circle.set(increment += increment)
-      // console.log(increment += increment)
 
         timeSecs--
         let displayMins = Math.floor(timeSecs / 60);
@@ -130,8 +179,9 @@ function () {
 
         if (timeSecs == 0) {
           clearInterval(timerId);
-          startButton.dataset.action  = 'restart'
-          startButton.textContent = 'restart'
+          startButton.dataset.action  = 'start'
+          startButton.textContent = 'start'
+          mainFunctions.soundClick()
         }
 
       }, 1000)
@@ -143,6 +193,7 @@ function () {
       clearInterval(timerId);
       startButton.dataset.action  = 'restart'
       startButton.textContent = 'restart'
+
       break;
 
     default:

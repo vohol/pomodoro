@@ -141,9 +141,25 @@ export function setupMainFont (font="'Kumbh Sans', sans-serif") {
 }
 
 export function setupTimers() {
-  const pomodoroStorage = document.querySelector('#pomodoro-setup').dataset.activeValue 
-  const shortBreakStorage = document.querySelector('#short-break-setup').dataset.activeValue 
-  const longBreakStorage = document.querySelector('#long-break-setup').dataset.activeValue 
+
+  let pomodoroStorage =  localStorage.getItem("pomodoro-setup") ?
+    localStorage.getItem("pomodoro-setup") :
+    document.querySelector('#pomodoro-setup').dataset.activeValue ;
+
+  let shortBreakStorage =  localStorage.getItem("short-break-setup") ?
+    localStorage.getItem("short-break-setup") :
+    document.querySelector('#short-break-setup').dataset.activeValue 
+  
+  let longBreakStorage =  localStorage.getItem("long-break-setup") ?
+  localStorage.getItem("long-break-setup") :
+  document.querySelector('#long-break-setup').dataset.activeValue;
+
+
+
+
+  // const pomodoroStorage = document.querySelector('#pomodoro-setup').dataset.activeValue 
+  // const shortBreakStorage = document.querySelector('#short-break-setup').dataset.activeValue 
+  // const longBreakStorage = document.querySelector('#long-break-setup').dataset.activeValue 
 
   const pomodoroTimer = document.querySelector('.pomodoro-timer__mins')
   const shortBreakTimer = document.querySelector('.short-break-timer__mins')
@@ -163,23 +179,8 @@ export function setupTimers() {
 }
 
 
-// export function startTimer (timerClass) {
-//   const activeTimer = document.querySelector(`.${timerClass}`)
-//   const timerMins = activeTimer.children[0]
-//   const timerSecs = activeTimer.children[1]
-//   let timeSecs = +timerMins.textContent * 60;
-    
-//   let timerId = setInterval(function() {
-//     timeSecs--
-//     let displayMins = Math.floor(timeSecs / 60);
-//     let displaySecs = timeSecs % 60
-
-//     timerMins.textContent = displayMins < 10 ?
-//       '0' + displayMins : displayMins;
-//     timerSecs.textContent = displaySecs < 10 ?
-//     '0' + displaySecs : displaySecs;
-//   }, 1000)
-
-//   if (timerId == 0) clearInterval(timerId);
-
-// }
+export function soundClick() {
+  let audio = new Audio(); // Создаём новый элемент Audio
+  audio.src = 'files/din.mp3'; // Указываем путь к звуку "клика"
+  audio.play() // Автоматически запускаем
+}
