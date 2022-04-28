@@ -77,19 +77,23 @@ document.addEventListener('click', function(event){
 })
 
 const applyButton = document.querySelector('.settings__apply')
-applyButton.addEventListener('click',
-function () {
-  mainFunctions.applySettings()
-  mainFunctions.removeActive('settings')
-})
-
-
+const startButton = document.querySelector('.pomodoro__go-btn')
 let increment = 0;
 let timeSecs;
 let initialTimeSecs;
 var step;
+applyButton.addEventListener('click',
+function () {
+  mainFunctions.applySettings()
+  mainFunctions.removeActive('settings')
+  clearInterval(timerId);
+  startButton.dataset.action  = 'start'
+  startButton.textContent = 'start'
+  circle.set(0)
+})
 
-const startButton = document.querySelector('.pomodoro__go-btn')
+
+
 startButton.addEventListener('click',
 function () {
   const activeTimer = document.querySelector(`.pomodoro__time--active`)
@@ -165,7 +169,7 @@ function () {
       circle.animate(increment, {
         duration: 1000,
       });
-      
+
         timeSecs--
         let displayMins = Math.floor(timeSecs / 60);
         let displaySecs = timeSecs % 60

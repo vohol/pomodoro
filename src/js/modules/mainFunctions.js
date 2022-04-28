@@ -155,20 +155,20 @@ export function setupTimersFromLocalStorage() {
 
   if (localStorage.getItem("pomodoroStorage")) {
     pomodoroStorage = localStorage.getItem("pomodoroStorage")
-    document.querySelector('#pomodoro-setup').dataset.activeValue = +pomodoroStorage
+    document.querySelector('#pomodoro-setup').dataset.activeValue = pomodoroStorage
   } else {
     pomodoroStorage = document.querySelector('#pomodoro-setup').dataset.activeValue 
   }
   if (localStorage.getItem("shortBreakStorage")) {
     shortBreakStorage = localStorage.getItem("shortBreakStorage")
-    document.querySelector('#short-break-setup').dataset.activeValue  = +shortBreakStorage
+    document.querySelector('#short-break-setup').dataset.activeValue  = shortBreakStorage
   } else {
     shortBreakStorage = document.querySelector('#short-break-setup').dataset.activeValue 
   }
 
   if (localStorage.getItem("longBreakStorage")) {
     longBreakStorage = localStorage.getItem("longBreakStorage")
-    document.querySelector('#long-break-setup').dataset.activeValue = +longBreakStorage
+    document.querySelector('#long-break-setup').dataset.activeValue = longBreakStorage
   } else {
     longBreakStorage = document.querySelector('#long-break-setup').dataset.activeValue 
   }
