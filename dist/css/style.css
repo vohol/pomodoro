@@ -181,6 +181,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #D7E0FF;
   margin-top: 75.9px;
   margin-bottom: 5.09px;
+  display: none;
+  transition: all 0.3s;
+}
+.pomodoro__time--active {
+  display: block;
 }
 .pomodoro__go-btn {
   cursor: pointer;
@@ -239,15 +244,11 @@ h1, h2, h3, h4, h5, h6 {
     height: 366px;
   }
   .pomodoro__time {
-    display: none;
     font-size: 100px;
     line-height: 124px;
     letter-spacing: -5px;
     margin-top: 105px;
     margin-bottom: 20px;
-  }
-  .pomodoro__time--active {
-    display: block;
   }
   .pomodoro__go-btn {
     font-size: 16px;

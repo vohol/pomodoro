@@ -116,6 +116,11 @@ $desktop: 1440px;
     color: #D7E0FF;
     margin-top: 75.9px;
     margin-bottom: 5.09px;
+    display: none;
+    transition: all 0.3s;
+    &--active {
+      display: block;
+    }
   }
   &__go-btn {
     cursor: pointer;
@@ -176,15 +181,12 @@ $desktop: 1440px;
       height: 366px;
     }
     &__time {
-      display: none;
       font-size: 100px;
       line-height: 124px;
       letter-spacing: -5px;
       margin-top: 105px;
       margin-bottom: 20px;
-      &--active {
-        display: block;
-      }
+      
     }
     &__go-btn {
       font-size: 16px;
