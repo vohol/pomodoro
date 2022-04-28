@@ -96,6 +96,9 @@ export function applySettings () {
   pomodoro.dataset.activeValue = pomodoro.value;
   shortBreak.dataset.activeValue = shortBreak.value;
   longBreak.dataset.activeValue = longBreak.value;
+  localStorage.setItem("pomodoroStorage", pomodoro.value )
+  localStorage.setItem("shortBreakStorage", shortBreak.value )
+  localStorage.setItem("longBreakStorage", longBreak.value )
   setupTimers()
 
   if (color.classList.contains('settings__color-item--red')) {
@@ -108,7 +111,8 @@ export function applySettings () {
     newColor = '#F87070'
   }
 
-  setupMainColor(newColor)
+  localStorage.setItem("color", newColor)
+  setupMainColor()
   allColors.forEach(element => {
     element.dataset.active='false'
   });
@@ -124,6 +128,7 @@ export function applySettings () {
     newFont = "'Kumbh Sans', sans-serif"
   }
 
+  localStorage.setItem("font", newFont)
   setupMainFont(newFont)
   allFonts.forEach(element => {
     element.dataset.active='false'
@@ -133,33 +138,40 @@ export function applySettings () {
 
 //function for setup value --main-color in css
 export function setupMainColor (color='#F87070') {
-  document.documentElement.style.setProperty("--main-color", color);
+  let newColor = localStorage.getItem("color") ? localStorage.getItem("color") : color;
+  document.documentElement.style.setProperty("--main-color", newColor);
 }
 //function for setup value --main-font in css
 export function setupMainFont (font="'Kumbh Sans', sans-serif") {
-  document.documentElement.style.setProperty("--main-font", font);
+  let newFont = localStorage.getItem("font") ? localStorage.getItem("font") : font;
+  document.documentElement.style.setProperty("--main-font", newFont);
 }
 
-export function setupTimers() {
+export function setupTimersFromLocalStorage() {
 
-  let pomodoroStorage =  localStorage.getItem("pomodoro-setup") ?
-    localStorage.getItem("pomodoro-setup") :
-    document.querySelector('#pomodoro-setup').dataset.activeValue ;
+  let pomodoroStorage;
+  let shortBreakStorage;
+  let longBreakStorage;
 
-  let shortBreakStorage =  localStorage.getItem("short-break-setup") ?
-    localStorage.getItem("short-break-setup") :
-    document.querySelector('#short-break-setup').dataset.activeValue 
-  
-  let longBreakStorage =  localStorage.getItem("long-break-setup") ?
-  localStorage.getItem("long-break-setup") :
-  document.querySelector('#long-break-setup').dataset.activeValue;
+  if (localStorage.getItem("pomodoroStorage")) {
+    pomodoroStorage = localStorage.getItem("pomodoroStorage")
+    document.querySelector('#pomodoro-setup').dataset.activeValue = +pomodoroStorage
+  } else {
+    pomodoroStorage = document.querySelector('#pomodoro-setup').dataset.activeValue 
+  }
+  if (localStorage.getItem("shortBreakStorage")) {
+    shortBreakStorage = localStorage.getItem("shortBreakStorage")
+    document.querySelector('#short-break-setup').dataset.activeValue  = +shortBreakStorage
+  } else {
+    shortBreakStorage = document.querySelector('#short-break-setup').dataset.activeValue 
+  }
 
-
-
-
-  // const pomodoroStorage = document.querySelector('#pomodoro-setup').dataset.activeValue 
-  // const shortBreakStorage = document.querySelector('#short-break-setup').dataset.activeValue 
-  // const longBreakStorage = document.querySelector('#long-break-setup').dataset.activeValue 
+  if (localStorage.getItem("longBreakStorage")) {
+    longBreakStorage = localStorage.getItem("longBreakStorage")
+    document.querySelector('#long-break-setup').dataset.activeValue = +longBreakStorage
+  } else {
+    longBreakStorage = document.querySelector('#long-break-setup').dataset.activeValue 
+  }
 
   const pomodoroTimer = document.querySelector('.pomodoro-timer__mins')
   const shortBreakTimer = document.querySelector('.short-break-timer__mins')
@@ -174,8 +186,27 @@ export function setupTimers() {
   pomodoroTimerSecs.textContent = '00'
   shortBreakTimerSecs.textContent = '00'
   longBreakTimerSecs.textContent = '00'
+}
 
+export function setupTimers() {
 
+  const pomodoroStorage = document.querySelector('#pomodoro-setup').dataset.activeValue 
+  const shortBreakStorage = document.querySelector('#short-break-setup').dataset.activeValue 
+  const longBreakStorage = document.querySelector('#long-break-setup').dataset.activeValue 
+
+  const pomodoroTimer = document.querySelector('.pomodoro-timer__mins')
+  const shortBreakTimer = document.querySelector('.short-break-timer__mins')
+  const longBreakTimer = document.querySelector('.long-break-timer__mins')
+  const pomodoroTimerSecs = document.querySelector('.pomodoro-timer__secs')
+  const shortBreakTimerSecs = document.querySelector('.short-break-timer__secs')
+  const longBreakTimerSecs = document.querySelector('.long-break-timer__secs')
+
+  pomodoroTimer.textContent = pomodoroStorage < 10 ? '0' + pomodoroStorage : pomodoroStorage;
+  shortBreakTimer.textContent = shortBreakStorage < 10 ? '0' + shortBreakStorage : shortBreakStorage;
+  longBreakTimer.textContent = longBreakStorage < 10 ? '0' + longBreakStorage : longBreakStorage;
+  pomodoroTimerSecs.textContent = '00'
+  shortBreakTimerSecs.textContent = '00'
+  longBreakTimerSecs.textContent = '00'
 }
 
 

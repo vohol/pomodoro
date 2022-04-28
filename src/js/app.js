@@ -15,15 +15,11 @@ let circle = new ProgressBar.Circle('#progree-bar', {
 });
 
 
-
-document.addEventListener('load', function() {
-  mainFunctions.setupMainColor()
-  mainFunctions.setupMainFont()
-})
-
 document.addEventListener('DOMContentLoaded', function() {
   //load default values
-  mainFunctions.setupTimers()
+  mainFunctions.setupMainFont()
+  mainFunctions.setupMainColor()
+  mainFunctions.setupTimersFromLocalStorage()
 })
 
 //button to open settings menu
@@ -61,6 +57,12 @@ document.addEventListener('click', function(event){
     'pomodoro__time', true)
   } 
 
+  if (event.target.classList.contains('overlay')) {
+    mainFunctions.removeActive('settings')
+    mainFunctions.resetOption('settings__font-item')
+    mainFunctions.resetOption('settings__color-item')
+    mainFunctions.resetSelectorsOptions('incr-decr-selector')
+  }
   
   //tabs handler to toggle fonts in settings
   mainFunctions.toggleTabs('settings__font-item', event.target)
@@ -112,12 +114,10 @@ function () {
       
       
       step = 1/initialTimeSecs;
-      console.log(initialTimeSecs);
       
       timerId = setInterval(function() {
 
       increment += step
-      console.log(increment);
       if (increment < 1) {
         circle.animate(increment, {
           duration: 1000,
@@ -125,8 +125,7 @@ function () {
       } else {
         circle.set(1)
       }
-        // circle.set(increment += increment)
-      // console.log(increment += increment)
+
 
         timeSecs--
         let displayMins = Math.floor(timeSecs / 60);
@@ -166,8 +165,7 @@ function () {
       circle.animate(increment, {
         duration: 1000,
       });
-      console.log(increment);
-
+      
         timeSecs--
         let displayMins = Math.floor(timeSecs / 60);
         let displaySecs = timeSecs % 60

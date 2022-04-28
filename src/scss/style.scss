@@ -7,8 +7,8 @@ $tablet: 768px;
 $desktop: 1440px;
 
 :root {
-  --main-font: 'Kumbh Sans', sans-serif;
-  --main-color: #F87070;
+  --main-font: ;
+  --main-color: ;
 }
 
 .menu-icon { 
@@ -213,6 +213,7 @@ $desktop: 1440px;
 .settings {
   margin: 0 auto;
   position: fixed;
+  z-index: 99;
   width: 327px;
   top: 46px;
   left: 0;
@@ -222,9 +223,29 @@ $desktop: 1440px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s;
+
+  & +.overlay {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(10, 12, 28, 0.5);
+    z-index: 98;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+  
   &--active {
     opacity: 1;
     visibility: visible;
+
+    & +.overlay {
+      opacity: 1;
+      visibility: visible;
+    }
   }
   //padding-left: 24px;
   //padding-right: 23px;
