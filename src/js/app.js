@@ -3,6 +3,10 @@ import * as mainFunctions from "./modules/mainFunctions.js";
 
 dfltFunctions.isWebp();
 let timerId;
+let increment;
+let timeSecs;
+let initialTimeSecs;
+var step;
 
 let circle = new ProgressBar.Circle('#progree-bar', {
   strokeWidth: 4,
@@ -14,12 +18,34 @@ let circle = new ProgressBar.Circle('#progree-bar', {
   duration: 45000,
 });
 
+function setupActiveTimer() {
+  console.log(localStorage.getItem('activeTimer'));
+  //setup active timer
+  if (localStorage.getItem('activeTimer')) {
+    mainFunctions.changeActiveClassFromLocalStorage('pomodoro__break-btn', localStorage.getItem('activeTimer'))
+    mainFunctions.changeActiveClassFromLocalStorage('pomodoro__time',
+     localStorage.getItem('activeTimer'))
+  
+    step = Number(localStorage.getItem('stepForAnimation'))
+    increment = Number(localStorage.getItem('animationPosition'))
+    circle.set(increment)
+    console.log(step);
+    console.log(increment);
+
+    document.querySelector('.pomodoro__time--active').children[0].textContent = localStorage.getItem('activeMinutes')
+    document.querySelector('.pomodoro__time--active').children[1].textContent = localStorage.getItem('activeSeconsd')
+    startButton.dataset.action  = 'restart'
+    startButton.textContent = 'restart'
+
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   //load default values
   mainFunctions.setupMainFont()
   mainFunctions.setupMainColor()
   mainFunctions.setupTimersFromLocalStorage()
+  setupActiveTimer()
 })
 
 //button to open settings menu
@@ -78,10 +104,6 @@ document.addEventListener('click', function(event){
 
 const applyButton = document.querySelector('.settings__apply')
 const startButton = document.querySelector('.pomodoro__go-btn')
-let increment = 0;
-let timeSecs;
-let initialTimeSecs;
-var step;
 applyButton.addEventListener('click',
 function () {
   mainFunctions.applySettings()
@@ -97,14 +119,16 @@ function () {
 startButton.addEventListener('click',
 function () {
   const activeTimer = document.querySelector(`.pomodoro__time--active`)
+  localStorage.setItem('activeTimer', activeTimer.dataset.action)
   const timerMins = activeTimer.children[0]
   const timerSecs = activeTimer.children[1]
   
   switch (startButton.dataset.action) {
     case ('start'):
+      console.log(increment);
       startButton.dataset.action  = 'pause'
       startButton.textContent = 'pause'
-      circle.set(0)
+      circle.set(0);
       
       
       if (timeSecs == 0) {
@@ -113,15 +137,19 @@ function () {
       }
       
       increment = 0;
+      
+
       timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
       initialTimeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
       
-      
       step = 1/initialTimeSecs;
+      
+      localStorage.setItem('stepForAnimation', step)
       
       timerId = setInterval(function() {
 
       increment += step
+      localStorage.setItem('animationPosition', increment)
       if (increment < 1) {
         circle.animate(increment, {
           duration: 1000,
@@ -133,7 +161,9 @@ function () {
 
         timeSecs--
         let displayMins = Math.floor(timeSecs / 60);
+        localStorage.setItem('activeMinutes', displayMins )
         let displaySecs = timeSecs % 60
+        localStorage.setItem('activeSeconsd', displaySecs )
         
         timerMins.textContent = displayMins < 10 ?
         '0' + displayMins : displayMins;
@@ -145,6 +175,7 @@ function () {
           startButton.dataset.action  = 'start'
           startButton.textContent = 'start'
           mainFunctions.soundClick()
+          localStorage.removeItem('activeTimer')
 
         }
         
@@ -155,6 +186,7 @@ function () {
       case ('restart'):
       startButton.dataset.action  = 'pause'
       startButton.textContent = 'pause'
+      
     
       timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
       
@@ -164,15 +196,21 @@ function () {
       }
 
       timerId = setInterval(function() {
-
+        console.log(step);
+        console.log(increment);
       increment += step
+      console.log(step);
+    console.log(increment);
+      localStorage.setItem('stepForAnimation', step)
       circle.animate(increment, {
         duration: 1000,
       });
 
         timeSecs--
         let displayMins = Math.floor(timeSecs / 60);
+        localStorage.setItem('activeMinutes', displayMins )
         let displaySecs = timeSecs % 60
+        localStorage.setItem('activeSeconsd', displaySecs )
     
         timerMins.textContent = displayMins < 10 ?
           '0' + displayMins : displayMins;
@@ -183,6 +221,7 @@ function () {
           clearInterval(timerId);
           startButton.dataset.action  = 'start'
           startButton.textContent = 'start'
+          localStorage.removeItem('activeTimer')
           mainFunctions.soundClick()
         }
 
@@ -202,7 +241,3 @@ function () {
       break;
   }
 })
-
-
-
-

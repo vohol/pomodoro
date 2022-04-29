@@ -39,10 +39,25 @@ export function toggleTabs(nonActiveClass, target,
           element.classList.add(tabsElementActiveClass)
         }
       });
-
     }
   }
 }
+
+export function changeActiveClassFromLocalStorage(nonActiveClass, 
+   dataAction) {
+    const tabs = document.querySelectorAll(`.${nonActiveClass}`)
+    const activeClass = `${nonActiveClass}--active`
+
+    tabs.forEach(element => {
+      element.classList.remove(activeClass)
+      
+      if (element.dataset.action == dataAction) {
+        element.classList.add(activeClass)
+      }
+    });
+    
+
+  }
 
 //function to reset color or font setting when close settings 
 export function resetOption(nonActiveClass) {
