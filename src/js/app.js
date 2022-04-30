@@ -81,6 +81,11 @@ document.addEventListener('click', function(event){
     startButton.dataset.action  = 'start'
     startButton.textContent = 'start'
     circle.set(0)
+    localStorage.removeItem('activeTimer')
+    localStorage.removeItem('activeMinutes')
+    localStorage.removeItem('activeSeconsd')
+    localStorage.removeItem('animationPosition')
+    localStorage.removeItem('stepForAnimation')
 
 
     mainFunctions.toggleTabs('pomodoro__break-btn', event.target,
