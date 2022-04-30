@@ -116,31 +116,37 @@ export function applySettings () {
   localStorage.setItem("longBreakStorage", longBreak.value )
   setupTimers()
 
-  if (color.classList.contains('settings__color-item--red')) {
-    newColor = '#F87070'
-  } else if (color.classList.contains('settings__color-item--blue')) {
-    newColor = '#70F3F8'
-  } else if (color.classList.contains('settings__color-item--purple')) {
-    newColor = '#D881F8'
-  } else {
-    newColor = '#F87070'
+  switch (true) {
+    case color.classList.contains('settings__color-item--red'):
+    default:
+      newColor = '#F87070'
+      break;
+    case color.classList.contains('settings__color-item--blue'):
+      newColor = '#70F3F8'
+      break;
+    case color.classList.contains('settings__color-item--purple'):
+      newColor = '#F87070'
+      break;
   }
-
+  
   localStorage.setItem("color", newColor)
   setupMainColor()
   allColors.forEach(element => {
     element.dataset.active='false'
   });
   color.dataset.active='true'
-
-  if (font.classList.contains('settings__font-item--kumbh')) {
-    newFont = "'Kumbh Sans', sans-serif"
-  } else if (font.classList.contains('settings__font-item--roboto')) {
-    newFont = "Roboto Slab', serif"
-  } else if (font.classList.contains('settings__font-item--space')) {
-    newFont = "'Space Mono', monospace"
-  } else {
-    newFont = "'Kumbh Sans', sans-serif"
+  
+  switch (true) {
+    case font.classList.contains('settings__font-item--kumbh'):
+    default:
+      newFont = "'Kumbh Sans', sans-serif"
+      break;
+    case font.classList.contains('settings__font-item--roboto'):
+      newFont = "Roboto Slab', serif"
+      break;
+    case font.classList.contains('settings__font-item--space'):
+      newColor = "'Space Mono', monospace"
+      break;
   }
 
   localStorage.setItem("font", newFont)
@@ -221,7 +227,7 @@ export function setupTimers() {
 
 
 export function soundClick() {
-  let audio = new Audio(); // Создаём новый элемент Audio
-  audio.src = 'files/din.mp3'; // Указываем путь к звуку "клика"
-  audio.play() // Автоматически запускаем
+  let audio = new Audio(); 
+  audio.src = 'files/din.mp3'; 
+  audio.play() 
 }
