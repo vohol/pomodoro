@@ -50,7 +50,7 @@ export function changeActiveClassFromLocalStorage(nonActiveClass,
 
     tabs.forEach(element => {
       element.classList.remove(activeClass)
-      
+
       if (element.dataset.action == dataAction) {
         element.classList.add(activeClass)
       }
@@ -168,25 +168,10 @@ export function setupTimersFromLocalStorage() {
   let shortBreakStorage;
   let longBreakStorage;
 
-  if (localStorage.getItem("pomodoroStorage")) {
-    pomodoroStorage = localStorage.getItem("pomodoroStorage")
-    document.querySelector('#pomodoro-setup').dataset.activeValue = pomodoroStorage
-  } else {
-    pomodoroStorage = document.querySelector('#pomodoro-setup').dataset.activeValue 
-  }
-  if (localStorage.getItem("shortBreakStorage")) {
-    shortBreakStorage = localStorage.getItem("shortBreakStorage")
-    document.querySelector('#short-break-setup').dataset.activeValue  = shortBreakStorage
-  } else {
-    shortBreakStorage = document.querySelector('#short-break-setup').dataset.activeValue 
-  }
+  pomodoroStorage = localStoraGetItemById("pomodoroStorage", 'pomodoro-setup')
+  shortBreakStorage = localStoraGetItemById("shortBreakStorage", 'short-break-setup')
+  longBreakStorage = localStoraGetItemById("longBreakStorage", 'long-break-setup')
 
-  if (localStorage.getItem("longBreakStorage")) {
-    longBreakStorage = localStorage.getItem("longBreakStorage")
-    document.querySelector('#long-break-setup').dataset.activeValue = longBreakStorage
-  } else {
-    longBreakStorage = document.querySelector('#long-break-setup').dataset.activeValue 
-  }
 
   const pomodoroTimer = document.querySelector('.pomodoro-timer__mins')
   const shortBreakTimer = document.querySelector('.short-break-timer__mins')
@@ -195,12 +180,22 @@ export function setupTimersFromLocalStorage() {
   const shortBreakTimerSecs = document.querySelector('.short-break-timer__secs')
   const longBreakTimerSecs = document.querySelector('.long-break-timer__secs')
 
-  pomodoroTimer.textContent = pomodoroStorage < 10 ? '0' + pomodoroStorage : pomodoroStorage;
-  shortBreakTimer.textContent = shortBreakStorage < 10 ? '0' + shortBreakStorage : shortBreakStorage;
-  longBreakTimer.textContent = longBreakStorage < 10 ? '0' + longBreakStorage : longBreakStorage;
+  pomodoroTimer.textContent = Number(pomodoroStorage) < 10 ? '0' + pomodoroStorage : pomodoroStorage;
+  shortBreakTimer.textContent = Number(shortBreakStorage )< 10 ? '0' + shortBreakStorage : shortBreakStorage;
+  longBreakTimer.textContent = Number(longBreakStorage) < 10 ? '0' + longBreakStorage : longBreakStorage;
   pomodoroTimerSecs.textContent = '00'
   shortBreakTimerSecs.textContent = '00'
   longBreakTimerSecs.textContent = '00'
+}
+
+function localStoraGetItemById(localStorageItem, id, value) {
+  if (localStorage.getItem(localStorageItem)) {
+    value = Number(localStorage.getItem(localStorageItem))
+    document.querySelector(`#${id}`).dataset.activeValue = value
+  } else {
+    value = Number(document.querySelector(`#${id}`).dataset.activeValue )
+  }
+  return value
 }
 
 export function setupTimers() {

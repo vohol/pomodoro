@@ -32,8 +32,12 @@ function setupActiveTimer() {
     console.log(step);
     console.log(increment);
 
-    document.querySelector('.pomodoro__time--active').children[0].textContent = localStorage.getItem('activeMinutes')
-    document.querySelector('.pomodoro__time--active').children[1].textContent = localStorage.getItem('activeSeconsd')
+    document.querySelector('.pomodoro__time--active').children[0].textContent = Number(localStorage.getItem('activeMinutes')) < 10 ?
+    '0' + localStorage.getItem('activeMinutes') : localStorage.getItem('activeMinutes');
+
+    document.querySelector('.pomodoro__time--active').children[1].textContent = Number(localStorage.getItem('activeSeconsd')) < 10 ?
+    '0' + localStorage.getItem('activeSeconsd') : localStorage.getItem('activeSeconsd');
+
     startButton.dataset.action  = 'restart'
     startButton.textContent = 'restart'
 
@@ -176,6 +180,10 @@ function () {
           startButton.textContent = 'start'
           mainFunctions.soundClick()
           localStorage.removeItem('activeTimer')
+          localStorage.removeItem('activeMinutes')
+          localStorage.removeItem('activeSeconsd')
+          localStorage.removeItem('animationPosition')
+          localStorage.removeItem('stepForAnimation')
 
         }
         
@@ -221,8 +229,12 @@ function () {
           clearInterval(timerId);
           startButton.dataset.action  = 'start'
           startButton.textContent = 'start'
-          localStorage.removeItem('activeTimer')
           mainFunctions.soundClick()
+          localStorage.removeItem('activeTimer')
+          localStorage.removeItem('activeMinutes')
+          localStorage.removeItem('activeSeconsd')
+          localStorage.removeItem('animationPosition')
+          localStorage.removeItem('stepForAnimation')
         }
 
       }, 1000)
