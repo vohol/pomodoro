@@ -142,10 +142,10 @@ export function applySettings () {
       newFont = "'Kumbh Sans', sans-serif"
       break;
     case font.classList.contains('settings__font-item--roboto'):
-      newFont = "Roboto Slab', serif"
+      newFont = "'Roboto Slab', serif"
       break;
     case font.classList.contains('settings__font-item--space'):
-      newColor = "'Space Mono', monospace"
+      newFont = "'Space Mono', monospace"
       break;
   }
 
