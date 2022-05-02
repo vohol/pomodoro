@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .pomodoro {
   padding: 32px 24px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #1E213F;
   display: flex;
   flex-direction: column;
@@ -216,7 +216,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (min-width: 768px) {
   .pomodoro {
-    padding: 80px 0 0;
+    padding: 80px 0 48px;
   }
   .pomodoro__title {
     font-size: 32px;
