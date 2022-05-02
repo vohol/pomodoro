@@ -1,20 +1,20 @@
 @import "nullstyle.scss";
-// font-family: 'Kumbh Sans', sans-serif;
-// font-family: 'Roboto Slab', serif;
-// font-family: 'Space Mono', monospace;
 
 $tablet: 768px;
 $desktop: 1440px;
+
 
 :root {
   --main-font: ;
   --main-color: ;
 }
 
+
 .menu-icon { 
   width: 28px; 
   height: 28px;
 }
+
 
 .arrow-short-icon {
   width: 14px;
@@ -24,9 +24,11 @@ $desktop: 1440px;
   opacity: 0.25;
   transition: all 0.3s;
   pointer-events: none;
+
   &--top {
     transform: rotate(180deg);
   }
+
 }
 
 
@@ -36,21 +38,23 @@ $desktop: 1440px;
   font-weight: 700;
 }
 
+
 .pomodoro {
   padding: 32px 24px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #1E213F;
   display: flex;
   flex-direction: column;
   align-items: center;
+
   &__title {
-    
     font-size: 24px;
     line-height: 30px;
     text-align: center;
     color: #D7E0FF;
     margin-bottom: 45px;
   }
+
   &__breaks {
     display: flex;
     align-items: center;
@@ -62,6 +66,7 @@ $desktop: 1440px;
     border-radius: 31.5px;
     margin-bottom: 48px;
   }
+
   &__break-btn {
     display: flex;
     align-items: center;
@@ -69,23 +74,26 @@ $desktop: 1440px;
     min-width: 106px;
     min-height: 48px;
     border-radius: 26.5px;
-    
     font-size: 12px;
     line-height: 15px;
     color: #D7E0FF;
     opacity: 0.4;
     background: transparent;
     transition: all 0.3s;
+
     &--active {
       background: var(--main-color);
       opacity: 1 !important; 
       color: #1E213F;
       cursor: auto;
     }
+
     &:hover {
       opacity: 1;
     }
+
   }
+
   &__clock-wrapper {
     display: flex;
     align-items: center;
@@ -97,6 +105,7 @@ $desktop: 1440px;
     box-shadow: -50px -50px 100px #272C5A, 50px 50px 100px #121530;
     margin-bottom: 63px;
   }
+
   &__clock {
     position: relative;
     width: 267.8px;
@@ -107,8 +116,8 @@ $desktop: 1440px;
     flex-direction: column;
     align-items: center;
   }
+
   &__time {
-    
     font-weight: 700;
     font-size: 80px;
     line-height: 99px;
@@ -118,10 +127,13 @@ $desktop: 1440px;
     margin-bottom: 5.09px;
     display: none;
     transition: all 0.3s;
+
     &--active {
       display: block;
     }
+
   }
+
   &__go-btn {
     cursor: pointer;
     position: relative;
@@ -133,18 +145,24 @@ $desktop: 1440px;
     letter-spacing: 13.125px;
     color: #D7E0FF;
     background: transparent;
+
     &:hover {
       color: var(--main-color);
     }
+
   }
+
   &__settings {
     background: transparent;
+
     .menu-icon {
       fill: #D7E0FF;
       opacity: 0.5;
       transition: opacity 0.3s;
     }
+
     &:hover {
+      
       .menu-icon {
         opacity: 1;
       }
@@ -152,42 +170,50 @@ $desktop: 1440px;
   }
 }
 
+
 @media screen and (min-width: $tablet) {
+
   .pomodoro {
-    padding: 80px 0 0;
+    padding: 80px 0 48px;
+
     &__title {
       font-size: 32px;
       line-height: 40px;
       margin-bottom: 55px;
     }
+
     &__breaks {
       padding-left: 7px;
       padding-right: 7px;
       margin-bottom: 109px;
     }
+
     &__break-btn {
       min-width: 120px;
       font-size: 14px;
       line-height: 17px;
       opacity: 0.4;
     }
+
     &__clock-wrapper {
       width: 410px;
       height: 410px;
       margin-bottom: 144px;
     }
+
     &__clock {
       width: 366px;
       height: 366px;
     }
+
     &__time {
       font-size: 100px;
       line-height: 124px;
       letter-spacing: -5px;
       margin-top: 105px;
       margin-bottom: 20px;
-      
     }
+
     &__go-btn {
       font-size: 16px;
       line-height: 20px;
@@ -198,14 +224,18 @@ $desktop: 1440px;
 
 
 @media screen and (min-width: $desktop) {
+
   .pomodoro {
     padding-top: 48px;
+
     &__breaks {
       margin-bottom: 52px;
     }
+
     &__clock-wrapper {
       margin-bottom: 63px;
     }
+
     &__go-btn {
       line-height: 21px;
     }
@@ -248,9 +278,9 @@ $desktop: 1440px;
       opacity: 1;
       visibility: visible;
     }
+
   }
-  //padding-left: 24px;
-  //padding-right: 23px;
+
   &__header-wrapper {
     min-height: 73px;
     border-bottom: 1px solid #E3E1E1;
@@ -260,14 +290,14 @@ $desktop: 1440px;
     justify-content: space-between;
     align-items: center;
   }
+
   &__title {
-    
     font-weight: 700;
     font-size: 20px;
     line-height: 25px;
   } 
+
   &__content-title {
-    
     font-weight: 700;
     font-size: 11px;
     line-height: 14px;
@@ -276,31 +306,36 @@ $desktop: 1440px;
     margin-bottom: 18px;
     text-align: center;
   }
+
   &__times {
     padding: 24px 24px 24px 23px;
     display: flex;
     flex-direction: column;
-    //gap: 8px;
   }
+
   &__time-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     &:not(:last-child) {
       margin-bottom: 8px;
     }
+
   }
+
   &__time-option {
-    
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
     color: #1E213F;
     opacity: 0.4;
   }
+
   &__fonts, &__colors {
     padding: 24px 24px 0 23px;
     position: relative;
+
     &:after {
       top: 0;
       left: 23px;
@@ -310,24 +345,29 @@ $desktop: 1440px;
       width: 280px;
       height: 1px;
       background-color: #E3E1E1;
-      
     }
+
   }
+
   &__colors {
     padding-top: 16px;
   }
+
   &__fonts-wrapper,
   &__colors-wrapper {
     display: flex;
     justify-content: center;
     gap: 16px;
   }
+
   &__fonts-wrapper {
     margin-bottom: 24px;
   }
+
   &__colors-wrapper {
     padding-bottom: 59px;
   }
+
   &__font-item {
     position: relative;
     width: 40px;
@@ -341,6 +381,7 @@ $desktop: 1440px;
     font-size: 15px;
     color: rgba(30, 33, 63, 0.73);
     cursor: pointer;
+
     &::after {
       content: ' ';
       display: block;
@@ -354,28 +395,37 @@ $desktop: 1440px;
       border: 1px solid transparent;
       transition: all 0.3s;
     }
+
     &:hover::after  {
       border-color: #EFF1FA;
     }
+
     &--active {
       color: #fff;
       background-color: #161932;
       cursor: auto;
+
       &:hover::after  {
         border-color: transparent;
       }
+
     }
+
     &--kumbh {
       font-family: 'Kumbh Sans', sans-serif;
     }
+
     &--roboto {
       font-family: 'Roboto Slab', serif;
       font-weight: 400;
     }
+
     &--space {
       font-family: 'Space Mono', monospace;
     }
+
   }
+
   &__color-item {
     position: relative;
     width: 40px;
@@ -383,24 +433,30 @@ $desktop: 1440px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s;
+
     &:hover {
       opacity: 0.6;
     }
+
     &--red {
       background-color: #F87070;
     }
+
     &--blue {
       background-color: #70F3F8;
-
     }
+
     &--purple {
       background-color: #D881F8;
     }
+
     &--active {
       cursor: auto;
+
       &:hover {
         opacity: 1;
       }
+
       &::after{
         border-color: transparent;
         content: url('@img/Path 2.svg');
@@ -409,8 +465,11 @@ $desktop: 1440px;
         left: 50%;
         transform: translate(-50%, -50%);
       }
+
     }
+
   }
+
   &__apply {
     width: 140px;
     min-height: 53px;
@@ -420,7 +479,6 @@ $desktop: 1440px;
     transform: translate(-50%, 50%);
     background: #F87070;
     border-radius: 26.5px;
-    
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
@@ -432,11 +490,13 @@ $desktop: 1440px;
   }
 }
 
+
 .close {
   width: 18px;
   height: 18px;
   position: relative;
   cursor: pointer;
+
   &__first-line,
   &__second-line {
     display: block;
@@ -448,13 +508,17 @@ $desktop: 1440px;
     height: 2px;
     background-color: #979797;
   }
+
   &__first-line {
     transform: rotate(45deg);
   }
+
   &__second-line {
     transform: rotate(-45deg);
   }
+
   &:hover {
+
     .close__first-line,
     .close__second-line {
       opacity: 0.8;
@@ -462,9 +526,11 @@ $desktop: 1440px;
   }
 }
 
+
 .incr-decr-selector-wrapper {
   position: relative;
 }
+
 
 .incr-decr-selector {
   width: 140px;
@@ -482,11 +548,13 @@ $desktop: 1440px;
   -moz-appearance: textfield;
   appearance: textfield;
   margin: 0;
+
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button { 
       -webkit-appearance: none; 
       margin: 0; 
     }
+
   &__buttons {
     position: absolute;
     top: 8px;
@@ -496,12 +564,14 @@ $desktop: 1440px;
     gap: 9px;
     justify-content: center;
   }
+
   &__button-top,
   &__button-bottom {
     display: flex;
     width: 14px;
     height: 7px;
     background: transparent;
+
     &:hover .arrow-short-icon {
       opacity: 0.8;
     }
@@ -509,18 +579,22 @@ $desktop: 1440px;
 }
 
 @media screen and (min-width: $tablet) {
+
   .settings {
     width: 540px;
     top: 28%;
     border-radius: 25px;
+
     &__header-wrapper {
       min-height: 94px;
       padding: 0 40px 0 38px;
     }
+
     &__title {
       font-size: 28px;
       line-height: 35px;
     } 
+
     &__content-title {
       font-size: 13px;
       line-height: 16px;
@@ -528,50 +602,64 @@ $desktop: 1440px;
       margin-bottom: 0;
       text-align: left;
     }
+
     &__times {
       padding: 24px 40px;
       display: flex;
       flex-direction: column;
     }
+
     &__times-title {
       margin-bottom: 26px;
     }
+
     &__time-rows {
       display: flex;
     }
+
     &__time-row {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+
       &:not(:last-child) {
         margin-bottom: 0;
         margin-right: 20px;
       }
+
     }
+
     &__time-option {
       margin-bottom: 10px;
     }
+
     &__fonts,
     &__colors {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 24px 40px;
+
       &:after {
         top: 0;
         left: 40px;
         width: 460px;
       }
+
     }
+
     &__colors {
       padding: 23px 40px 59px;
     }
+
     &__fonts-wrapper {
       margin-bottom: 0;
     }
+
     &__colors-wrapper {
       padding-bottom: 0;
     }
+
   }
 }
 
@@ -583,9 +671,11 @@ $desktop: 1440px;
   top: 9.88px;
   left: 9.88px;
   stroke: var(--main-color);
+
   path {
     stroke: transparent;
   }
+
   path + path{
     stroke-linecap: round;
     stroke: var(--main-color);
@@ -593,6 +683,7 @@ $desktop: 1440px;
 }
 
 @media screen and (min-width: $tablet) {
+  
   .pomodoro__progress-circle {
     width: 339px;
     height: 339px;

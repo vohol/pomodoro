@@ -20,8 +20,14 @@ let circle = new ProgressBar.Circle('#progree-bar', {
   duration: 45000,
 });
 
+function setStatusStartButton(status) {
+  startButton.dataset.action  = status
+  startButton.textContent = status
+  localStorage.setItem('action-status', status )
+}
+
+
 function setupActiveTimer() {
-  console.log(localStorage.getItem('activeTimer'));
   //setup active timer
   if (localStorage.getItem('activeTimer')) {
     mainFunctions.changeActiveClassFromLocalStorage('pomodoro__break-btn', localStorage.getItem('activeTimer'))
@@ -31,25 +37,30 @@ function setupActiveTimer() {
     step = Number(localStorage.getItem('stepForAnimation'))
     increment = Number(localStorage.getItem('animationPosition'))
     circle.set(increment)
-    console.log(step);
-    console.log(increment);
 
     document.querySelector('.pomodoro__time--active').children[0].textContent = Number(localStorage.getItem('activeMinutes')) < 10 ?
     '0' + localStorage.getItem('activeMinutes') : localStorage.getItem('activeMinutes');
 
     document.querySelector('.pomodoro__time--active').children[1].textContent = Number(localStorage.getItem('activeSeconsd')) < 10 ?
     '0' + localStorage.getItem('activeSeconsd') : localStorage.getItem('activeSeconsd');
+    
     startButton.dataset.action  = 'restart'
-    mainClockHandler()
+    startButton.textContent = 'restart'
+
+    if (localStorage.getItem('action-status') == 'pause'){
+      mainClockHandler()
+    }
 
   }
 }
+
 
 document.addEventListener('DOMContentLoaded', function() {
   //load default values
   mainFunctions.setupMainFont()
   mainFunctions.setupMainColor()
   mainFunctions.setupTimersFromLocalStorage()
+  mainFunctions.applySettings()
   setupActiveTimer()
 })
 
@@ -75,20 +86,16 @@ function () {
 
 document.addEventListener('click', function(event){
   //tabs handler to toggle breaks in main menu
-  
   if (event.target.classList.contains('pomodoro__break-btn')) {
     clearInterval(timerId);
     mainFunctions.setupTimers();
-    startButton.dataset.action  = 'start'
-    startButton.textContent = 'start'
+    setStatusStartButton('start')
     circle.set(0)
     localStorage.removeItem('activeTimer')
     localStorage.removeItem('activeMinutes')
     localStorage.removeItem('activeSeconsd')
     localStorage.removeItem('animationPosition')
     localStorage.removeItem('stepForAnimation')
-
-
     mainFunctions.toggleTabs('pomodoro__break-btn', event.target,
     'pomodoro__time', true)
   } 
@@ -112,18 +119,20 @@ document.addEventListener('click', function(event){
     '.incr-decr-selector__button-bottom');
 })
 
-
+//apply settings and reboot timer after press button apply
 applyButton.addEventListener('click',
 function () {
   mainFunctions.applySettings()
   mainFunctions.removeActive('settings')
   clearInterval(timerId);
-  startButton.dataset.action  = 'start'
-  startButton.textContent = 'start'
+  setStatusStartButton('start')
   circle.set(0)
+  localStorage.removeItem('activeTimer')
+  localStorage.removeItem('activeMinutes')
+  localStorage.removeItem('activeSeconsd')
+  localStorage.removeItem('animationPosition')
+  localStorage.removeItem('stepForAnimation')
 })
-
-
 
 startButton.addEventListener('click', mainClockHandler
 )
@@ -136,11 +145,8 @@ function mainClockHandler() {
   
   switch (startButton.dataset.action) {
     case ('start'):
-
-      startButton.dataset.action  = 'pause'
-      startButton.textContent = 'pause'
+      setStatusStartButton('pause')
       circle.set(0);
-      
       
       if (timeSecs == 0) {
         mainFunctions.setupTimers();
@@ -148,7 +154,6 @@ function mainClockHandler() {
       }
       
       increment = 0;
-      
 
       timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
       initialTimeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
@@ -169,7 +174,6 @@ function mainClockHandler() {
         circle.set(1)
       }
 
-
         timeSecs--
         let displayMins = Math.floor(timeSecs / 60);
         localStorage.setItem('activeMinutes', displayMins )
@@ -183,15 +187,13 @@ function mainClockHandler() {
         
         if (timeSecs == 0) {
           clearInterval(timerId);
-          startButton.dataset.action  = 'start'
-          startButton.textContent = 'start'
+          setStatusStartButton('start')
           mainFunctions.soundClick()
           localStorage.removeItem('activeTimer')
           localStorage.removeItem('activeMinutes')
           localStorage.removeItem('activeSeconsd')
           localStorage.removeItem('animationPosition')
           localStorage.removeItem('stepForAnimation')
-
         }
         
       }, 1000)
@@ -199,9 +201,7 @@ function mainClockHandler() {
       break;
       
       case ('restart'):
-      startButton.dataset.action  = 'pause'
-      startButton.textContent = 'pause'
-      
+      setStatusStartButton('pause')
     
       timeSecs = +timerMins.textContent * 60 + +timerSecs.textContent;
       
@@ -211,13 +211,10 @@ function mainClockHandler() {
       }
 
       timerId = setInterval(function() {
-        console.log(step);
-        console.log(increment);
-      increment += step
-      console.log(step);
-    console.log(increment);
-      localStorage.setItem('stepForAnimation', step)
-      circle.animate(increment, {
+        increment += step
+        localStorage.setItem('animationPosition', increment)
+        localStorage.setItem('stepForAnimation', step)
+        circle.animate(increment, {
         duration: 1000,
       });
 
@@ -234,8 +231,7 @@ function mainClockHandler() {
 
         if (timeSecs == 0) {
           clearInterval(timerId);
-          startButton.dataset.action  = 'start'
-          startButton.textContent = 'start'
+          setStatusStartButton('start')
           mainFunctions.soundClick()
           localStorage.removeItem('activeTimer')
           localStorage.removeItem('activeMinutes')
@@ -251,8 +247,7 @@ function mainClockHandler() {
     case 'pause':
       
       clearInterval(timerId);
-      startButton.dataset.action  = 'restart'
-      startButton.textContent = 'restart'
+      setStatusStartButton('restart')
 
       break;
 
