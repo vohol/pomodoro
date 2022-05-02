@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
   mainFunctions.setupMainFont()
   mainFunctions.setupMainColor()
   mainFunctions.setupTimersFromLocalStorage()
-  mainFunctions.applySettings()
   setupActiveTimer()
 })
 
