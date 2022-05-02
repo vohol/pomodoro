@@ -161,11 +161,57 @@ export function applySettings () {
 export function setupMainColor (color='#F87070') {
   let newColor = localStorage.getItem("color") ? localStorage.getItem("color") : color;
   document.documentElement.style.setProperty("--main-color", newColor);
+  let activeSettings;
+
+  switch (newColor) {
+    case '#F87070':
+      activeSettings= 'settings__color-item--red'
+      break;
+    case '#70F3F8':
+      activeSettings = 'settings__color-item--blue'
+      break;
+    case '#D881F8':
+      activeSettings = 'settings__color-item--purple'
+      break;
+  }
+
+  const allColorsSettings = document.querySelectorAll('.settings__color-item')
+  const activeColorSettings = document.querySelector(`.${activeSettings}`)
+
+  allColorsSettings.forEach(element => {
+    element.dataset.active='false'
+    element.classList.remove('settings__color-item--active')
+  });
+  activeColorSettings.dataset.active='true'
+  activeColorSettings.classList.add('settings__color-item--active')
 }
 //function for setup value --main-font in css
 export function setupMainFont (font="'Kumbh Sans', sans-serif") {
   let newFont = localStorage.getItem("font") ? localStorage.getItem("font") : font;
   document.documentElement.style.setProperty("--main-font", newFont);
+  let activeSettings;
+
+  switch (newFont) {
+    case "'Kumbh Sans', sans-serif":
+      activeSettings= 'settings__font-item--kumbh'
+      break;
+    case "'Roboto Slab', serif":
+      activeSettings = 'settings__font-item--roboto'
+      break;
+    case "'Space Mono', monospace":
+      activeSettings = 'settings__font-item--space'
+      break;
+  }
+
+  const allFontsSettings = document.querySelectorAll('.settings__font-item')
+  const activeFontSettings = document.querySelector(`.${activeSettings}`)
+
+  allFontsSettings.forEach(element => {
+    element.dataset.active='false'
+    element.classList.remove('settings__font-item--active')
+  });
+  activeFontSettings.dataset.active='true'
+  activeFontSettings.classList.add('settings__font-item--active')
 }
 
 export function setupTimersFromLocalStorage() {
