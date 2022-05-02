@@ -125,7 +125,7 @@ export function applySettings () {
       newColor = '#70F3F8'
       break;
     case color.classList.contains('settings__color-item--purple'):
-      newColor = '#F87070'
+      newColor = '#D881F8'
       break;
   }
   
