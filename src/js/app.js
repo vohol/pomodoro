@@ -2,6 +2,8 @@ import * as dfltFunctions from "./modules/defaultFunctions.js";
 import * as mainFunctions from "./modules/mainFunctions.js";
 
 dfltFunctions.isWebp();
+const applyButton = document.querySelector('.settings__apply')
+const startButton = document.querySelector('.pomodoro__go-btn')
 let timerId;
 let increment;
 let timeSecs;
@@ -37,9 +39,8 @@ function setupActiveTimer() {
 
     document.querySelector('.pomodoro__time--active').children[1].textContent = Number(localStorage.getItem('activeSeconsd')) < 10 ?
     '0' + localStorage.getItem('activeSeconsd') : localStorage.getItem('activeSeconsd');
-
     startButton.dataset.action  = 'restart'
-    startButton.textContent = 'restart'
+    mainClockHandler()
 
   }
 }
@@ -111,8 +112,7 @@ document.addEventListener('click', function(event){
     '.incr-decr-selector__button-bottom');
 })
 
-const applyButton = document.querySelector('.settings__apply')
-const startButton = document.querySelector('.pomodoro__go-btn')
+
 applyButton.addEventListener('click',
 function () {
   mainFunctions.applySettings()
@@ -125,8 +125,10 @@ function () {
 
 
 
-startButton.addEventListener('click',
-function () {
+startButton.addEventListener('click', mainClockHandler
+)
+
+function mainClockHandler() {
   const activeTimer = document.querySelector(`.pomodoro__time--active`)
   localStorage.setItem('activeTimer', activeTimer.dataset.action)
   const timerMins = activeTimer.children[0]
@@ -134,7 +136,7 @@ function () {
   
   switch (startButton.dataset.action) {
     case ('start'):
-      console.log(increment);
+
       startButton.dataset.action  = 'pause'
       startButton.textContent = 'pause'
       circle.set(0);
@@ -257,4 +259,4 @@ function () {
     default:
       break;
   }
-})
+}
