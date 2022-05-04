@@ -121,16 +121,20 @@ document.addEventListener('click', function(event){
 //apply settings and reboot timer after press button apply
 applyButton.addEventListener('click',
 function () {
-  mainFunctions.applySettings()
-  mainFunctions.removeActive('settings')
-  clearInterval(timerId);
-  setStatusStartButton('start')
-  circle.set(0)
-  localStorage.removeItem('activeTimer')
-  localStorage.removeItem('activeMinutes')
-  localStorage.removeItem('activeSeconsd')
-  localStorage.removeItem('animationPosition')
-  localStorage.removeItem('stepForAnimation')
+  if (mainFunctions.applySettings() == true) {
+    clearInterval(timerId);
+    setStatusStartButton('start')
+    circle.set(0)
+    localStorage.removeItem('activeTimer')
+    localStorage.removeItem('activeMinutes')
+    localStorage.removeItem('activeSeconsd')
+    localStorage.removeItem('animationPosition')
+    localStorage.removeItem('stepForAnimation')
+    mainFunctions.removeActive('settings')
+
+  } else {
+      mainFunctions.removeActive('settings')
+  }
 })
 
 startButton.addEventListener('click', mainClockHandler

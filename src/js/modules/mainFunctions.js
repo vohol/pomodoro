@@ -99,6 +99,8 @@ export function resetSelectorsOptions ( selectorClass ) {
 
 //function to setup new color, font and traker after press button Apply
 export function applySettings () {
+  let flagChangingTimers = false
+
   const pomodoro = document.querySelector('#pomodoro-setup')
   const shortBreak = document.querySelector('#short-break-setup')
   const longBreak = document.querySelector('#long-break-setup')
@@ -108,13 +110,21 @@ export function applySettings () {
   const allFonts = document.querySelectorAll('.settings__font-item')
   let newColor; let newFont;
 
-  pomodoro.dataset.activeValue = pomodoro.value;
-  shortBreak.dataset.activeValue = shortBreak.value;
-  longBreak.dataset.activeValue = longBreak.value;
-  localStorage.setItem("pomodoroStorage", pomodoro.value )
-  localStorage.setItem("shortBreakStorage", shortBreak.value )
-  localStorage.setItem("longBreakStorage", longBreak.value )
-  setupTimers()
+  if (
+    pomodoro.dataset.activeValue != pomodoro.value ||
+    shortBreak.dataset.activeValue != shortBreak.value ||
+    longBreak.dataset.activeValue != longBreak.value
+  ) {
+    flagChangingTimers = true
+    pomodoro.dataset.activeValue = pomodoro.value;
+    shortBreak.dataset.activeValue = shortBreak.value;
+    longBreak.dataset.activeValue = longBreak.value;
+  
+    localStorage.setItem("pomodoroStorage", pomodoro.dataset.activeValue )
+    localStorage.setItem("shortBreakStorage", shortBreak.dataset.activeValue )
+    localStorage.setItem("longBreakStorage", longBreak.dataset.activeValue )
+    setupTimers()
+  }
 
   switch (true) {
     case color.classList.contains('settings__color-item--red'):
@@ -155,6 +165,8 @@ export function applySettings () {
     element.dataset.active='false'
   });
   font.dataset.active='true'
+
+  return flagChangingTimers
 }
 
 //function for setup value --main-color in css
@@ -224,6 +236,16 @@ export function setupTimersFromLocalStorage() {
   shortBreakStorage = localStoraGetItemById("shortBreakStorage", 'short-break-setup')
   longBreakStorage = localStoraGetItemById("longBreakStorage", 'long-break-setup')
 
+  const pomodoro = document.querySelector('#pomodoro-setup')
+  const shortBreak = document.querySelector('#short-break-setup')
+  const longBreak = document.querySelector('#long-break-setup')
+
+  pomodoro.dataset.activeValue = pomodoroStorage
+  shortBreak.dataset.activeValue = shortBreakStorage
+  longBreak.dataset.activeValue = longBreakStorage
+  pomodoro.value = pomodoroStorage
+  shortBreak.value = shortBreakStorage
+  longBreak.value = longBreakStorage
 
   const pomodoroTimer = document.querySelector('.pomodoro-timer__mins')
   const shortBreakTimer = document.querySelector('.short-break-timer__mins')
@@ -252,9 +274,13 @@ function localStoraGetItemById(localStorageItem, id, value) {
 
 export function setupTimers() {
 
-  const pomodoroStorage = document.querySelector('#pomodoro-setup').dataset.activeValue 
-  const shortBreakStorage = document.querySelector('#short-break-setup').dataset.activeValue 
-  const longBreakStorage = document.querySelector('#long-break-setup').dataset.activeValue 
+  const pomodoro = document.querySelector('#pomodoro-setup')
+  const shortBreak = document.querySelector('#short-break-setup')
+  const longBreak = document.querySelector('#long-break-setup')
+
+  const pomodoroStorage =  pomodoro.dataset.activeValue
+  const shortBreakStorage = shortBreak.dataset.activeValue
+  const longBreakStorage = longBreak.dataset.activeValue
 
   const pomodoroTimer = document.querySelector('.pomodoro-timer__mins')
   const shortBreakTimer = document.querySelector('.short-break-timer__mins')
